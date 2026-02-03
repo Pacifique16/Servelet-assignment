@@ -1,48 +1,116 @@
 # MyWebAssignment - Java Servlet Project
 
+**Student ID:** 26937  
+**Group:** C Tuesday  
+**Branch:** servlet_26937_C_tuesday
+
+## Overview
+A Java web application demonstrating servlet-based authentication with password validation and Google search redirect functionality.
+
+## Features
+- User authentication with password strength validation
+- Strong password requirement (8+ characters)
+- Google search redirect functionality
+- Session management
+- Dynamic welcome messages based on password strength
+- Clean HTML interface
+
 ## Project Structure
 ```
 MyWebAssignment/
 ├─ src/
-│   ├─ LoginServlet.java
-│   └─ RedirectServlet.java
+│   ├─ LoginServlet.java      # Handles user authentication
+│   └─ RedirectServlet.java    # Manages post-login redirects
 ├─ WebContent/
-│   ├─ login.html
-│   ├─ redirect.html
+│   ├─ index.html             # Landing page
+│   ├─ login.html             # Login form
+│   ├─ redirect.html          # Success page
 │   └─ WEB-INF/
-│       └─ web.xml
+│       └─ web.xml            # Servlet configuration
+└─ pom.xml                    # Maven configuration
 ```
 
-## Deployment Instructions
+## Screenshots
 
-### Option 1: Using Eclipse IDE
-1. Import this project into Eclipse
-2. Right-click project → Properties → Project Facets
-3. Enable "Java" and "Dynamic Web Module"
-4. Add Tomcat server to Eclipse
-5. Right-click project → Run As → Run on Server
+### 1. Login Page
+![Login Page](images/login-page.png)
+*User authentication form with username and password fields*
 
-### Option 2: Manual Deployment to Tomcat
-1. Compile Java files:
-   ```
-   javac -cp "path/to/tomcat/lib/servlet-api.jar" src/*.java
-   ```
-2. Create WAR structure:
-   - Copy WebContent/ to MyWebAssignment/
-   - Create WEB-INF/classes/ directory
-   - Move compiled .class files to WEB-INF/classes/
-3. Deploy to Tomcat webapps directory
+### 2. Strong Password Success
+![Success Page](images/success-page.png)
+*Welcome message for users with strong passwords (8+ characters): "Welcome <username>"*
 
-### Option 3: Using Maven (create pom.xml)
-1. Add Maven structure
-2. Run: `mvn clean package`
-3. Deploy generated WAR file
+### 3. Weak Password Warning
+![Fail Page](images/fail-page.png)
+*Warning message for weak passwords (<8 characters): "Hello <username>, your password is weak. Try a strong one."*
 
-## Login Credentials
-- Username: admin
-- Password: password
+### 4. Redirect Search Page
+![Redirect Page](images/redirect-page.png)
+*Google search redirect page where users can enter search terms*
+
+### 5. Redirect Success
+![Redirect Success](images/redirect-success-page.png)
+*Successful redirect to Google search results (example: "auca registration login")*
+
+## Quick Start
+
+### Prerequisites
+- Java 8+
+- Apache Tomcat 9+
+- Maven 3.6+
+
+### Running the Application
+```bash
+# Clone the repository
+git clone https://github.com/Pacifique16/Servelet-assignment.git
+cd Servelet-assignment
+git checkout servlet_26937_C_tuesday
+
+# Build with Maven
+mvn clean package
+
+# Deploy to Tomcat
+cp target/MyWebAssignment.war $TOMCAT_HOME/webapps/
+
+# Start Tomcat
+$TOMCAT_HOME/bin/startup.sh
+```
+
+## Authentication Rules
+- **Any username** is accepted
+- **Strong Password:** 8+ characters → Shows "Welcome <username>"
+- **Weak Password:** <8 characters → Shows "Hello <username>, your password is weak. Try a strong one."
+
+### Example Credentials
+- **Strong:** username: `admin`, password: `password123` (8+ chars)
+- **Weak:** username: `user`, password: `123` (<8 chars)
 
 ## Access URLs
-- http://localhost:8080/MyWebAssignment/ (redirects to login)
-- http://localhost:8080/MyWebAssignment/login
-- http://localhost:8080/MyWebAssignment/redirect (after successful login)
+- **Login Page:** http://localhost:8080/MyWebAssignment/login.html
+- **Login Processing:** http://localhost:8080/MyWebAssignment/login
+- **Redirect Page:** http://localhost:8080/MyWebAssignment/redirect.html
+- **Redirect Processing:** http://localhost:8080/MyWebAssignment/redirect
+
+## Servlet Mappings
+- `/login` → LoginServlet (handles authentication & password validation)
+- `/redirect` → RedirectServlet (handles Google search redirects)
+
+## Application Flow
+1. **Login:** User enters credentials
+2. **Validation:** System checks password strength (8+ characters)
+3. **Response:** 
+   - Strong password → "Welcome <username>"
+   - Weak password → Warning message
+4. **Redirect:** User can search terms to redirect to Google
+5. **Search:** System redirects to Google with search query
+
+## Technologies Used
+- Java Servlets
+- HTML/CSS
+- Apache Tomcat
+- Maven
+
+## Author
+**Pacifique Harerimana**  
+Student ID: 26937  
+AUCA - Web Technology and Internet Course
